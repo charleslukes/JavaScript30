@@ -26,9 +26,9 @@
       misc styles, nothing to do with CSS variables
     */
     :root {
-      --spacing: 1rem;
+      --spacing: 1px;
       --base: #ffc600;
-      --blur: 5rem;
+      --blur: 2px;
     }
 
     body {
@@ -64,21 +64,13 @@
     const inputs = document.querySelectorAll('.controls input');
 
     function handleInput(e){
-    let space = getComputedStyle(document.documentElement)
-    .getPropertyValue('--spacing');
-    
-    let blur = getComputedStyle(document.documentElement)
-    .getPropertyValue('--blur');
+    const dataVal = e.target.dataset.sizing || '';
 
-    let base = getComputedStyle(document.documentElement)
-    .getPropertyValue('--base');
-
-    
+    document.documentElement.style.setProperty(`--${e.target.name}`, e.target.value + dataVal);
     }
 
-    inputs.forEach(elem => {
-      elem.addEventListener('change', handleInput);
-    })
+    inputs.forEach(elem => elem.addEventListener('change', handleInput));
+    inputs.forEach(elem => elem.addEventListener('mousemove', handleInput));
 
   </script>
 
