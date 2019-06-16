@@ -106,12 +106,16 @@
       // solution
       let ageLived = inventors.sort((a, b) => (a.passed - a.year) - (b.passed - b.year));
       console.log(ageLived);
-      
+
       // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
+
+      // sort name alphabetically
+      let sortName = people.sort();
+      console.log(sortName);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -131,6 +135,18 @@
         "car",
         "truck",
       ];
+
+      // reduce solution 2
+      let sumInstance = data.reduce((acc, elem) => {
+          if (!acc[elem]) {
+            acc[elem] = 1;
+          }
+          else {
+            acc[elem]++
+          }
+          return acc;
+        }, {});
+      console.log(sumInstance);
     </script>
   </body>
 </html>
