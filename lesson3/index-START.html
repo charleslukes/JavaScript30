@@ -12,14 +12,29 @@
     <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="5" data-sizing="px">
 
     <label for="base">Base Color</label>
     <input id="base" type="color" name="base" value="#ffc600">
   </div>
 
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+  
+  <h3>Optional Controls</h3>
+  <footer class="foot">
+    <label for="f__spacing">Spacing:</label>
+    <input id=""f__spacing"" type="text" placeholder="how much spacing">
 
+    <label for="f__blur">Blur:</label>
+    <input id="f__blur" type="text" placeholder="how much blur">
+
+    <label for="f__base">Base Color:</label>
+    <input id="f__base" type="text" placeholder="how much color">
+
+    <!-- <div class="sub">
+      <button type="button"> Submit </button>
+    </div> -->
+  </footer>
   <style>
 
     /*
@@ -28,7 +43,7 @@
     :root {
       --spacing: 1px;
       --base: #ffc600;
-      --blur: 2px;
+      --blur: 1px;
     }
 
     body {
@@ -57,11 +72,31 @@
     .hl {
       color: var(--base);
     }
+
+    .foot input {
+      height: 30px;
+      display: inline-block;
+      width: 100px;
+    }
+    /* button {
+      height: 30px;
+      width: 100px;
+      background-color: steelblue;
+      color: white;
+    } */
   </style>
 
   <script>
 
     const inputs = document.querySelectorAll('.controls input');
+    const foot = document.querySelectorAll('.foot input');
+
+    // hold individual text field value;
+    const spaceField = document.querySelector('#f__spacing').value;
+    const blurField = document.querySelector('#f__blur').value;
+    const baseField = document.querySelector('#f__base').value;
+
+
 
     function handleInput(e){
     const dataVal = e.target.dataset.sizing || '';
@@ -69,9 +104,31 @@
     document.documentElement.style.setProperty(`--${e.target.name}`, e.target.value + dataVal);
     }
 
+    // no light, finish up when light comes;
+    function optionalHandle() {
+      
+      if (testField(spaceField) && testField(blur) && checkColor(baseField)) {
+        // do something 
+      }
+    }
+
+    // test the input field
+    function testField(input) {
+      let regex = /^[0-9]+$/g;
+
+      return regex.test(input);
+    }
+
+    // test the color field 
+    function checkColor() {
+      let regex = /^#W+|^/
+    }
+
     inputs.forEach(elem => elem.addEventListener('change', handleInput));
     inputs.forEach(elem => elem.addEventListener('mousemove', handleInput));
 
+    // for the text fields
+    foot.forEach(elem => elem.addEventListener('keyup', optionalHandle));
   </script>
 
 </body>
